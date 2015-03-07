@@ -32,6 +32,15 @@
 	{{--@yield('content')--}}
 
 	<!-- Scripts -->
+
+	<div class="content">
+    	@if (Session::has('message'))
+    		<div class="flash alert-info">
+    			<p>{{ Session::get('message') }}</p>
+    					</div>
+    						@endif
+    	@yield('content')
+    </div>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>

@@ -13,16 +13,20 @@
 
 // Provide controller methods with object instead of ID
 
+Route::get('/', 'WelcomeController@index');
+Route::get('home', 'HomeController@index');
+
 Route::get('/blog', 'BlogController@index');
 
-Route::resource('voters', 'VotersController');
-//Route::resource('tasks', 'CandidatesController');
-Route::resource('voters.candidates', 'CandidatesController');
-
-
+Route::model('candidates', 'Task');
+Route::model('voters', 'Project');
+// Use slugs rather than IDs in URLs
 Route::bind('candidates', function($value, $route) {
     return App\Candidate::where($value)->first();
 });
 Route::bind('voters', function($value, $route) {
-    return App\Voter::where($value)->first();
+    return App\Voters::where($value)->first();
 });
+
+Route::resource('voters', 'VotersController');
+Route::resource('voters.candidates', 'CandidatesController');
